@@ -1,0 +1,11 @@
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: 60000
+      cache-null-values: false
+      key-prefix: test_
+      use-key-prefix: true
+  data:
+    redis:
+      repositories: false
