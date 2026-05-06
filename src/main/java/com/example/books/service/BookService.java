@@ -30,11 +30,11 @@ public class BookService {
     }
 
     @Cacheable(value = "bookById",
-                key = "id")
+                key = "#id")
     public Book findById(Long id) {
         return bookRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(
-                        MessageFormat.format("Book with ID {} not found", id)
+                        MessageFormat.format("Book with ID {0} not found", id)
                 )
         );
     }
@@ -93,7 +93,7 @@ public class BookService {
 
         Book existedBook = bookRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        MessageFormat.format("Book with ID {} not found", id)
+                        MessageFormat.format("Book with ID {0} not found", id)
                 ));
 
         Category category = categoryRepository.findByName(request.getCategoryName())
